@@ -15,7 +15,7 @@ Feature: namespaced
       </psalm>
       """
 
-  Scenario: run with errors
+  Scenario: run with namespace
     Given I have the following code
       """
       <?php
@@ -26,6 +26,26 @@ Feature: namespaced
       namespace MyNameSpace;
 
       class A extends \BadNamespace\BadClass {}
+      """
+    When I run Psalm
+    Then I see these errors
+      | Type                  | Message                                                                             |
+      | ForbiddenExtending | A extends forbidden BadNamespace\BadClass |
+    And I see no other errors
+
+  Scenario: run with relative namespace
+    Given I have the following code
+      """
+      <?php
+      namespace BadNamespace;
+
+      class BadClass {}
+
+      namespace MyNameSpace;
+
+      use BadNamespace\BadClass;
+
+      class A extends BadClass {}
       """
     When I run Psalm
     Then I see these errors
