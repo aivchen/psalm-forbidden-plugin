@@ -32,7 +32,8 @@ final class ForbidExtendHandler implements AfterClassLikeAnalysisInterface
                 new ForbiddenExtending(
                     "{$event->getStmt()->name} extends forbidden $parent",
                     new CodeLocation($event->getStatementsSource(), $event->getStmt(), single_line: true)
-                )
+                ),
+                $event->getStatementsSource()->getSuppressedIssues()
             );
         }
     }
