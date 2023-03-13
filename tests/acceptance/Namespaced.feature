@@ -1,4 +1,4 @@
-Feature: basics
+Feature: namespaced
   Background:
     Given I have the following config
       """
@@ -9,7 +9,7 @@ Feature: basics
         </projectFiles>
         <plugins>
           <pluginClass class="Weirdan\PsalmPluginSkeleton\Plugin">
-            <extend>BadClass</extend>
+            <extend>BadNamespace\BadClass</extend>
           </pluginClass>
         </plugins>
       </psalm>
@@ -19,12 +19,16 @@ Feature: basics
     Given I have the following code
       """
       <?php
+      namespace BadNamespace;
+
       class BadClass {}
-      class A extends BadClass {}
+
+      namespace MyNameSpace;
+
+      class A extends \BadNamespace\BadClass {}
       """
     When I run Psalm
     Then I see these errors
       | Type                  | Message                                                                             |
-      | ForbiddenClassExtending | A extends forbidden BadClass |
+      | ForbiddenClassExtending | A extends forbidden BadNamespace\BadClass |
     And I see no other errors
-

@@ -2,37 +2,47 @@
 
 namespace Weirdan\PsalmPluginSkeleton;
 
+use Psalm\CodeLocation;
+use Psalm\IssueBuffer;
+use Psalm\Plugin\EventHandler\AfterClassLikeAnalysisInterface;
+use Psalm\Plugin\EventHandler\Event\AfterClassLikeAnalysisEvent;
 use SimpleXMLElement;
 use Psalm\Plugin\PluginEntryPointInterface;
 use Psalm\Plugin\RegistrationInterface;
 
-class Plugin implements PluginEntryPointInterface
+use function Codeception\Extension\codecept_log;
+
+class Plugin implements PluginEntryPointInterface, AfterClassLikeAnalysisInterface
 {
+    private static array $forbiddenExtend = [];
+
     /** @return void */
     public function __invoke(RegistrationInterface $psalm, ?SimpleXMLElement $config = null): void
     {
-        // This is plugin entry point. You can initialize things you need here,
-        // and hook them into psalm using RegistrationInterface
-        //
-        // Here's some examples:
-        // 1. Add a stub file
-        // ```php
-        // $psalm->addStubFile(__DIR__ . '/stubs/YourStub.php');
-        // ```
-        foreach ($this->getStubFiles() as $file) {
-            $psalm->addStubFile($file);
+        $psalm->registerHooksFromClass(self::class);
+
+        if ($config === null) {
+            return;
         }
 
-        // Psalm allows arbitrary content to be stored under you plugin entry in
-        // its config file, psalm.xml, so your plugin users can put some configuration
-        // values there. They will be provided to your plugin entry point in $config
-        // parameter, as a SimpleXmlElement object. If there's no configuration present,
-        // null will be passed instead.
+        self::$forbiddenExtend = array_map(static fn($e) => (string)$e, (array)$config->extend);
     }
 
-    /** @return list<string> */
-    private function getStubFiles(): array
+    public static function afterStatementAnalysis(AfterClassLikeAnalysisEvent $event): void
     {
-        return glob(__DIR__ . '/stubs/*.phpstub') ?: [];
+        $stmt = $event->getStmt();
+        if (!isset($stmt->extends)) {
+            return;
+        }
+        $name = (string)$stmt->extends;
+
+        if (in_array($name, self::$forbiddenExtend, true)) {
+            IssueBuffer::accepts(
+                new ForbiddenClassExtending(
+                    "Class {$event->getStmt()->name} extends forbidden $name",
+                    new CodeLocation($event->getStatementsSource(), $event->getStmt(), single_line: true)
+                )
+            );
+        }
     }
 }
