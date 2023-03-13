@@ -6,7 +6,6 @@ namespace Aivchen\PsalmForbiddenPlugin;
 
 use Psalm\Issue\PluginIssue;
 
-final class ForbiddenClassExtending extends PluginIssue
+final class ForbiddenExtending extends PluginIssue
 {
-
 }

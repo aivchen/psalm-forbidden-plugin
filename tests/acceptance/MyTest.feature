@@ -25,6 +25,6 @@ Feature: basics
     When I run Psalm
     Then I see these errors
       | Type                  | Message                                                                             |
-      | ForbiddenClassExtending | A extends forbidden BadClass |
+      | ForbiddenExtending | A extends forbidden BadClass |
     And I see no other errors
 
