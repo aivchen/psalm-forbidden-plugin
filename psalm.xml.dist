@@ -8,7 +8,8 @@
     totallyTyped="true"
 >
     <projectFiles>
-        <directory name="." />
+        <directory name="src" />
+        <directory name="tests" />
         <ignoreFiles>
             <directory name="vendor" />
             <directory name="tests/_support/_generated" />

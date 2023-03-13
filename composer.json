@@ -5,8 +5,8 @@
     "license": "MIT",
     "authors": [
         {
-            "name": "Bruce Weirdan",
-            "email": "weirdan@gmail.com"
+            "name": "Andrew Ivchenkov",
+            "email": "and.ivchenkov@gmail.com"
         }
     ],
     "require": {
@@ -29,7 +29,7 @@
     "autoload": {
         "psr-4": {
             "Aivchen\\PsalmForbiddenPlugin\\": [
-                "."
+                "./src"
             ]
         }
     },
