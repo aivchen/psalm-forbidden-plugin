@@ -31,6 +31,7 @@ class Plugin implements PluginEntryPointInterface, AfterClassLikeAnalysisInterfa
     public static function afterStatementAnalysis(AfterClassLikeAnalysisEvent $event): void
     {
         $stmt = $event->getStmt();
+
         if (!isset($stmt->extends)) {
             return;
         }
