@@ -1,5 +1,5 @@
 {
-    "name": "weirdan/psalm-plugin-skeleton",
+    "name": "aivchen/psalm-forbidden-plugin",
     "description": "Template to create psalm-plugin projects from",
     "type": "psalm-plugin",
     "license": "MIT",
@@ -23,19 +23,19 @@
     },
     "extra": {
         "psalm": {
-            "pluginClass": "Weirdan\\PsalmPluginSkeleton\\Plugin"
+            "pluginClass": "Aivchen\\PsalmForbiddenPlugin\\Plugin"
         }
     },
     "autoload": {
         "psr-4": {
-            "Weirdan\\PsalmPluginSkeleton\\": [
+            "Aivchen\\PsalmForbiddenPlugin\\": [
                 "."
             ]
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Weirdan\\PsalmPluginSkeleton\\Tests\\": [
+            "Aivchen\\PsalmForbiddenPlugin\\Tests\\": [
                 "tests/_support",
                 "tests"
             ]

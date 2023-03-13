@@ -1,6 +1,6 @@
 <?php
 
-namespace Weirdan\PsalmPluginSkeleton\Tests;
+namespace Aivchen\PsalmForbiddenPlugin\Tests;
 
 /**
  * Inherited Methods

@@ -8,7 +8,7 @@ Feature: basics
           <directory name="."/>
         </projectFiles>
         <plugins>
-          <pluginClass class="Weirdan\PsalmPluginSkeleton\Plugin">
+          <pluginClass class="Aivchen\PsalmForbiddenPlugin\Plugin">
             <extend>BadClass</extend>
           </pluginClass>
         </plugins>

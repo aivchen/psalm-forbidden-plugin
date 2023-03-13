@@ -1,6 +1,6 @@
 <?php
 
-namespace Weirdan\PsalmPluginSkeleton;
+namespace Aivchen\PsalmForbiddenPlugin;
 
 use Psalm\CodeLocation;
 use Psalm\IssueBuffer;
@@ -10,8 +10,9 @@ use SimpleXMLElement;
 use Psalm\Plugin\PluginEntryPointInterface;
 use Psalm\Plugin\RegistrationInterface;
 
-use function Codeception\Extension\codecept_log;
-
+/**
+ * @psalm-api
+ */
 class Plugin implements PluginEntryPointInterface, AfterClassLikeAnalysisInterface
 {
     private static array $forbiddenExtend = [];

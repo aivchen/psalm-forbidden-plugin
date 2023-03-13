@@ -8,7 +8,7 @@ Feature: namespaced
           <directory name="."/>
         </projectFiles>
         <plugins>
-          <pluginClass class="Weirdan\PsalmPluginSkeleton\Plugin">
+          <pluginClass class="Aivchen\PsalmForbiddenPlugin\Plugin">
             <extend>BadNamespace\BadClass</extend>
           </pluginClass>
         </plugins>

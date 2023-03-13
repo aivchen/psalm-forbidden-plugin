@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Weirdan\PsalmPluginSkeleton;
+namespace Aivchen\PsalmForbiddenPlugin;
 
 use Psalm\Issue\PluginIssue;
 
