@@ -33,7 +33,7 @@ To be able to forbid inheritance of some class add it to the config.
 Example:
 
 ```xml
-<pluginClass class="Psalm\SymfonyPsalmPlugin\Plugin">
+<pluginClass class="Aivchen\PsalmForbiddenPlugin\Plugin">
     <extend>BadNamespace\BadClass</extend>
 </pluginClass>
 ```
