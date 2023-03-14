@@ -1,6 +1,6 @@
 {
     "name": "aivchen/psalm-forbidden-plugin",
-    "description": "Template to create psalm-plugin projects from",
+    "description": "Psalm plugin to forbid inheritance for classes",
     "type": "psalm-plugin",
     "license": "MIT",
     "authors": [
