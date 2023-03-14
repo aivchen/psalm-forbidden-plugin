@@ -1,6 +1,6 @@
 # Psalm Forbidden Plugin
 
-![Integrate](https://github.com/aivchen/psalm-forbidden-plugin/workflows/Integrate/badge.svg)
+![Integrate](https://github.com/aivchen/psalm-forbidden-plugin/actions/workflows/ci.yml/badge.svg)
 
 ### Installation
 
