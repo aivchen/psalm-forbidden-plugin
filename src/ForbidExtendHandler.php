@@ -21,17 +21,19 @@ final class ForbidExtendHandler implements AfterClassLikeAnalysisInterface
 
     public static function afterStatementAnalysis(AfterClassLikeAnalysisEvent $event)
     {
-        $parent = $event->getClasslikeStorage()->parent_class;
+        $storage = $event->getClasslikeStorage();
+        $parent = $storage->parent_class;
 
-        if (!$parent) {
+        if (!$parent || !$storage->location) {
             return;
         }
 
         if (in_array($parent, self::$forbiddenItems, true)) {
-            IssueBuffer::accepts(
+            IssueBuffer::maybeAdd(
                 new ForbiddenExtending(
                     "{$event->getStmt()->name} extends forbidden $parent",
-                    new CodeLocation($event->getStatementsSource(), $event->getStmt(), single_line: true)
+                    $storage->location,
+                    $storage->name
                 ),
                 $event->getStatementsSource()->getSuppressedIssues()
             );
