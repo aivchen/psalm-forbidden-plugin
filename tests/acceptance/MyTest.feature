@@ -28,3 +28,13 @@ Feature: basics
       | ForbiddenExtending | A extends forbidden BadClass |
     And I see no other errors
 
+  Scenario: run suppressed
+    Given I have the following code
+      """
+      <?php
+      class BadClass {}
+      /** @psalm-suppress ForbiddenExtending */
+      class A extends BadClass {}
+      """
+    When I run Psalm
+    Then I see no errors

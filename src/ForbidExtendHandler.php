@@ -35,7 +35,7 @@ final class ForbidExtendHandler implements AfterClassLikeAnalysisInterface
                     $storage->location,
                     $storage->name
                 ),
-                $event->getStatementsSource()->getSuppressedIssues()
+                $storage->suppressed_issues
             );
         }
     }
